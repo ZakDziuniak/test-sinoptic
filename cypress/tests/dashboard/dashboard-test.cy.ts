@@ -1,13 +1,29 @@
-import { IOpenDashboard, ISearchByCity } from "../../step_definitions/dashboard";
+import {
+  ICheckAllDaysDate,
+  IClickSeeByTenDays,
+  IOpenDashboard,
+  ISearchByCity,
+} from "../../step_definitions/dashboard";
+import { IBlockAllSpamRequests } from "../../step_definitions/requests";
 
 describe("Test sinoptic.ua", () => {
-  it("First test", () => {
-    cy.intercept("https://ghb.adtelligent.com/**", {statusCode:200})
-    cy.intercept("https://stats.g.doubleclick.net/**", {statusCode:200})
-    cy.intercept("https://ghb.adtelligent.com/**", {statusCode:200})
-    cy.intercept("https://securepubads.g.doubleclick.net/**", {statusCode:200})
+  beforeEach(() => {
+    IBlockAllSpamRequests();
+  });
+  it("Test weather for Київ", () => {
+    const city = "Київ";
     IOpenDashboard();
-    ISearchByCity("Київ")
+    ISearchByCity(city);
+    ICheckAllDaysDate();
+    IClickSeeByTenDays();
+    ICheckAllDaysDate();
+  });
+  it("Test weather for Вишгород", () => {
+    const city = "Вишгород";
+    IOpenDashboard();
+    ISearchByCity(city);
+    ICheckAllDaysDate();
+    IClickSeeByTenDays();
+    ICheckAllDaysDate();
   });
 });
-

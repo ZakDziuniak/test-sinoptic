@@ -26,9 +26,18 @@ export default defineConfig({
   },
 });
 
+let cityName: string;
 async function setupNodeEvents(
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions
 ): Promise<Cypress.PluginConfigOptions> {
+  on("task", {
+    setCity: (val) => {
+      return (cityName = val);
+    },
+    getCity: () => {
+      return cityName;
+    },
+  });
   return config;
 }
