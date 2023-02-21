@@ -14,15 +14,6 @@ export default defineConfig({
     video: false,
     chromeWebSecurity: false,
     modifyObstructiveCode: false,
-    blockHosts: [
-      "*ghb.adtelligent.com",
-      "*hubspot.com",
-      "*hs-banner.com",
-      "*usemessages.com",
-      "*newrelic.com",
-      "*nr-data.net",
-      "*datadoghq.com",
-    ],
   },
 });
 
